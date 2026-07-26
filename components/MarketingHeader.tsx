@@ -21,7 +21,7 @@ export function MarketingHeader() {
     <header className="site-header">
       <div className="container site-header__inner">
         <Link href="/" className="site-logo" aria-label="Plekxa home">
-          <Image src="/brand/plekxa-logo.png" alt="Plekxa" width={397} height={126} priority />
+          <Image src="/brand/plekxa-logo-black.png" alt="Plekxa" width={397} height={126} priority />
         </Link>
 
         <nav className="site-nav" aria-label="Primary navigation">
