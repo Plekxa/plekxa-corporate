@@ -45,6 +45,15 @@ export default function Page() {
             />
 
             <ProductPreview
+              eyebrow="In Development"
+              title="Plekxa"
+              copy="Our future consumer platform bringing music, stories, creators and connected entertainment experiences together in one place."
+              href="/products/plekxa"
+              status="In development"
+              variant="dark"
+            />
+
+            <ProductPreview
               eyebrow="Coming Soon"
               title="Plekxa Experience"
               copy="A new entertainment destination where audiences discover original films, series and creative work emerging from the Plekxa ecosystem."

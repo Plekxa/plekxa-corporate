@@ -1,20 +1,11 @@
-export const metadata = {
-  title: "Company",
-};
+import Link from "next/link";
+
+export const metadata = { title: "Company" };
 
 const principles = [
-  {
-    title: "Opportunity",
-    copy: "We believe talented creators should be able to discover meaningful opportunities without relying on closed networks or chance connections.",
-  },
-  {
-    title: "Craft",
-    copy: "Professional tools, clear collaboration and thoughtful workflows should support great creative work at every stage.",
-  },
-  {
-    title: "Connection",
-    copy: "Creators, collaborators and audiences are strongest when they are connected through systems designed with trust and clarity.",
-  },
+  { title: "Creator empowerment", copy: "We build infrastructure that gives creators better ways to develop ideas, collaborate, manage rights and participate in long-term value." },
+  { title: "Connected experiences", copy: "We connect creation, distribution, discovery and audience engagement instead of treating them as separate worlds." },
+  { title: "Long-term thinking", copy: "We are building an adaptable entertainment ecosystem designed to grow across products, formats and markets." },
 ];
 
 export default function Page() {
@@ -23,80 +14,27 @@ export default function Page() {
       <section className="page-hero page-hero-dark">
         <div className="container narrow">
           <span className="eyebrow">About Plekxa</span>
-
-          <h1>Building the infrastructure behind the next generation of entertainment.</h1>
-
-          <p>
-            Plekxa is a media and technology company creating connected
-            products that help creators discover opportunities, collaborate
-            professionally and bring exceptional stories to audiences.
-          </p>
+          <h1>Building a more connected future for entertainment.</h1>
+          <p>Plekxa is an entertainment technology company developing products and services that empower creators, enable businesses and transform how people experience entertainment.</p>
         </div>
       </section>
 
       <section className="section company-intro">
         <div className="container split">
+          <div><span className="eyebrow">What we are building</span><h2>Better infrastructure for creativity.</h2></div>
           <div>
-            <span className="eyebrow">Our Mission</span>
-
-            <h2>Great stories deserve better systems.</h2>
-          </div>
-
-          <div>
-            <p>
-              Every year, talented creators struggle to access the opportunities,
-              collaborators and professional infrastructure needed to bring
-              ambitious ideas to life.
-            </p>
-
-            <p>
-              We believe creativity should be supported by better systems—not
-              unnecessary barriers. That's why we're building products that make
-              the journey from opportunity to audience simpler, clearer and more
-              connected.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="section company-intro">
-        <div className="container split">
-          <div>
-            <span className="eyebrow">Our Vision</span>
-
-            <h2>A connected entertainment ecosystem.</h2>
-          </div>
-
-          <div>
-            <p>
-              Plekxa is more than a single platform. We're building an ecosystem
-              where creators can discover opportunities, develop projects,
-              collaborate with confidence and eventually reach audiences through
-              connected experiences.
-            </p>
-
-            <p>
-              Every product we build is designed to strengthen that journey,
-              creating better outcomes for creators and better experiences for
-              audiences.
-            </p>
+            <p>Founded on the belief that creativity deserves better infrastructure, Plekxa is building an integrated ecosystem where creators can develop ideas, collaborate across disciplines, manage intellectual property and connect their work to audiences through innovative digital experiences.</p>
+            <p>Our ambition extends beyond individual products. We are connecting every stage of the entertainment value chain—from creation and collaboration to distribution, discovery, engagement and immersive experiences.</p>
           </div>
         </div>
       </section>
 
       <section className="section values-section">
         <div className="container">
-          <span className="eyebrow">Our Principles</span>
-
+          <span className="eyebrow">Our principles</span>
           <div className="values-grid">
             {principles.map((item, index) => (
-              <article key={item.title}>
-                <span>0{index + 1}</span>
-
-                <h3>{item.title}</h3>
-
-                <p>{item.copy}</p>
-              </article>
+              <article key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.copy}</p></article>
             ))}
           </div>
         </div>
@@ -104,25 +42,21 @@ export default function Page() {
 
       <section className="section company-intro">
         <div className="container split">
+          <div><span className="eyebrow">Our products</span><h2>One company. A connected ecosystem.</h2></div>
           <div>
-            <span className="eyebrow">What We Build</span>
-
-            <h2>Connected products for every stage of the creative journey.</h2>
+            <p><strong>Plekxa Studio</strong> is the creator platform at the heart of our ecosystem. It gives creators tools and opportunities to collaborate on projects, develop original intellectual property, manage rights, generate royalties and participate in entertainment experiences.</p>
+            <p><strong>Plekxa</strong> is our future consumer platform, designed to bring together entertainment, creators and digital experiences in ways that go beyond simply watching, listening or streaming.</p>
+            <Link href="/products" className="text-link">Explore our products <b>↗</b></Link>
           </div>
+        </div>
+      </section>
 
-          <div>
-            <p>
-              <strong>Plekxa Studio</strong> gives creators professional tools to
-              discover opportunities, pitch projects, manage collaboration and
-              deliver work with confidence.
-            </p>
-
-            <p>
-              <strong>Plekxa Experience</strong> will become a destination for
-              audiences to discover original entertainment built within the
-              Plekxa ecosystem.
-            </p>
-          </div>
+      <section className="section">
+        <div className="container narrow prose-large">
+          <span className="eyebrow">Looking ahead</span>
+          <h2>Building for the long term.</h2>
+          <p>Beginning with creator infrastructure through Plekxa Studio and expanding into consumer experiences through future Plekxa products, we are creating an integrated entertainment ecosystem for the next generation of creators and audiences.</p>
+          <p>We believe the future of entertainment will be more connected, collaborative and immersive—and Plekxa is building the technology to help make that future possible.</p>
         </div>
       </section>
     </>

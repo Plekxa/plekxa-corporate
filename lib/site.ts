@@ -1,1 +1,9 @@
-export const site={name:"Plekxa",url:"https://plekxa.com",description:"Plekxa is a media and technology company building better systems for creating, collaborating on and experiencing original entertainment.",studioUrl:"https://studio.plekxa.com",experienceUrl:"https://app.plekxa.com"};
+export const site = {
+  name: "Plekxa",
+  legalName: "Plekxa Group Limited",
+  url: "https://plekxa.com",
+  description:
+    "Plekxa is an entertainment technology company developing products and services that empower creators, enable businesses and transform how people experience entertainment.",
+  studioUrl: "https://studio.plekxa.com",
+  experienceUrl: "https://app.plekxa.com",
+};
