@@ -70,7 +70,7 @@ export function MarketingFooter({
       }))
     : fallback;
 
-  const email = settings.contact_email?.trim() || "hello@plekxa.com";
+  const email = "info@plekxa.com";
 
   return (
     <footer className="site-footer">

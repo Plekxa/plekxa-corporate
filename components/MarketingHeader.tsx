@@ -52,6 +52,7 @@ export function MarketingHeader({ links = publicEntertainmentLinks }: { links?: 
         >
           <span />
           <span />
+          <span />
         </button>
       </div>
 

@@ -897,7 +897,7 @@ body { background:#fff; color:var(--clean-text); }
 .site-nav { justify-content:flex-start; }
 .disney-section--music { color:#151515; background:#f1f2f3; }
 .disney-rail-wrap--compact .disney-card { flex:0 0 calc((100% - 72px)/4.35); background:transparent; }
-.disney-rail-wrap--compact .disney-card__image { height:230px; }
+.disney-rail-wrap--compact .disney-card__image { height:auto; aspect-ratio:1/1; }
 .disney-rail-wrap--compact .disney-card__body { min-height:auto; padding:12px 0 0; }
 .disney-rail-wrap--compact .disney-card__body h3 { font-size:1.05rem; line-height:1.25; }
 .disney-rail-wrap--compact .disney-card__body>span { display:none; }
@@ -913,6 +913,7 @@ body { background:#fff; color:var(--clean-text); }
 .catalogue-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:34px 22px; }
 .catalogue-card { color:#151515; text-decoration:none; }
 .catalogue-card__image { aspect-ratio:3/4; background:#dfe1e3 center/cover no-repeat; }
+.catalogue-grid--square .catalogue-card__image { aspect-ratio:1/1; }
 .catalogue-card h2 { margin:13px 0 6px; font-size:1.12rem; font-weight:500; }
 .catalogue-card p { margin:0; color:#666; font-size:.92rem; line-height:1.45; }
 .catalogue-empty { grid-column:1/-1; padding:80px 30px; text-align:center; background:#fff; }
@@ -927,11 +928,62 @@ body { background:#fff; color:var(--clean-text); }
 @media(max-width:680px){
   .site-header__inner { grid-template-columns:1fr auto; }
   .disney-rail-wrap--compact .disney-card { flex-basis:72vw; }
-  .disney-rail-wrap--compact .disney-card__image { height:220px; }
+  .disney-rail-wrap--compact .disney-card__image { height:auto; aspect-ratio:1/1; }
   .disney-rail-wrap--show .disney-card { flex-basis:62vw; }
   .disney-rail-wrap--show .disney-card__image { height:360px; }
   .disney-rail-wrap--poster .disney-card { flex-basis:56vw; }
   .disney-rail-wrap--poster .disney-card__image { height:350px; }
   .catalogue-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 14px; }
   .catalogue-hero { padding-top:48px; }
+}
+
+/* v3.6.4 — mobile hamburger stays visible on the white header */
+@media (max-width: 980px) {
+  .site-menu-button,
+  .site-menu-button:hover,
+  .site-menu-button:focus-visible {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: grid;
+    place-content: center;
+    gap: 5px;
+    border: 0;
+    border-radius: 0;
+    background: transparent !important;
+    box-shadow: none;
+    color: #111;
+    cursor: pointer;
+  }
+
+  .site-menu-button span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    border-radius: 999px;
+    background: #111 !important;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+
+  .site-menu-button[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .site-menu-button[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .site-menu-button[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .site-mobile-menu,
+  .site-mobile-menu.is-open {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  .site-mobile-menu a {
+    color: #111 !important;
+  }
 }
