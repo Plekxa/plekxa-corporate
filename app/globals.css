@@ -563,3 +563,157 @@ main { display:block; }
 
 /* Enterprise CMS integration */
 .news-empty{grid-column:1/-1;min-height:320px;padding:42px;border-radius:28px;background:#f3f0e8;display:flex;flex-direction:column;justify-content:flex-end}.news-empty p{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em}.news-empty h3{font:700 clamp(2rem,4vw,4rem)/1 "Manrope",sans-serif;max-width:850px;margin:12px 0 24px}.article-header{padding:150px 0 54px;background:#fff}.article-header__inner{max-width:1050px}.article-kicker{display:flex;gap:18px;text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;color:var(--muted)}.article-header h1{font:750 clamp(3.5rem,8vw,7.8rem)/.93 "Manrope",sans-serif;letter-spacing:-.075em;margin:24px 0}.article-header p{font-size:clamp(1.15rem,2vw,1.55rem);line-height:1.55;color:var(--muted);max-width:850px}.article-author{margin-top:24px;font-weight:700}.article-cover-wrap{padding-bottom:60px}.article-cover{height:min(70vw,760px);border-radius:34px;background-color:#17151d}.article-cover--fallback{background:radial-gradient(circle at 25% 25%,#ce6b4c,transparent 30%),radial-gradient(circle at 75% 30%,#654ed7,transparent 28%),linear-gradient(135deg,#101016,#2a1620)}.article-body{max-width:820px;padding-bottom:110px}.article-body p{font-size:1.15rem;line-height:1.9;margin:0 0 28px;color:#302d2a}.jobs-grid{display:grid;gap:16px}.job-card{display:grid;grid-template-columns:1fr 1.2fr auto;align-items:center;gap:28px;padding:28px;border:1px solid var(--line);border-radius:22px;background:#fff}.job-card span{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}.job-card h3{font-size:1.5rem;margin:8px 0}.job-card>p{color:var(--muted);line-height:1.6}.editorial-card__art{background-size:cover;background-position:center}.newsroom-image{background-size:cover;background-position:center}@media(max-width:760px){.article-header{padding-top:110px}.article-cover{border-radius:22px}.job-card{grid-template-columns:1fr}.article-body p{font-size:1.05rem}}
+
+/* Plekxa Corporate v3.1 — clean white entertainment design */
+:root {
+  --clean-text: #171717;
+  --clean-muted: #666666;
+  --clean-border: #dedede;
+  --clean-soft: #f5f5f5;
+}
+body { background:#fff; color:var(--clean-text); }
+.container { width:min(1200px,calc(100% - 48px)); }
+
+.site-header {
+  position:sticky;
+  top:0;
+  color:var(--clean-text);
+  background:rgba(255,255,255,.97);
+  border-bottom:1px solid #e8e8e8;
+  backdrop-filter:blur(14px);
+}
+.site-header__inner { height:68px; gap:32px; }
+.site-header .site-logo img { content:url('/brand/plekxa-logo-black.png'); filter:none; width:112px; height:auto; }
+.site-nav { gap:30px; }
+.site-nav a { color:#2a2a2a; font-size:.88rem; font-weight:500; }
+.site-nav a::after { bottom:-7px; height:1px; }
+.site-header__contact { color:#fff; background:#161616; padding:10px 18px; font-size:.86rem; }
+.site-menu-button span { background:#171717; }
+.site-mobile-menu { background:#fff; color:#171717; border-top:1px solid #eee; }
+
+.clean-home { background:#fff; }
+.clean-hero { position:relative; min-height:690px; display:flex; align-items:flex-end; overflow:hidden; color:#fff; background:#222; }
+.clean-hero__media { position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=2200&q=88'); background-size:cover; background-position:center; transform:scale(1.01); }
+.clean-hero__overlay { position:absolute; inset:0; background:linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.38) 52%,rgba(0,0,0,.08) 100%); }
+.clean-hero__content { position:relative; z-index:2; padding:120px 0 76px; }
+.clean-kicker { margin:0 0 16px; font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+.clean-kicker--dark { color:#666; }
+.clean-hero h1 { max-width:760px; margin:0; font:700 clamp(3.6rem,7vw,7rem)/.94 "Manrope",sans-serif; letter-spacing:-.065em; }
+.clean-hero__content>p:not(.clean-kicker) { max-width:600px; margin:24px 0 0; color:rgba(255,255,255,.9); font-size:1.15rem; line-height:1.6; }
+.clean-actions { display:flex; gap:12px; margin-top:32px; flex-wrap:wrap; }
+.clean-button { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 22px; border-radius:4px; font-weight:700; font-size:.9rem; transition:transform .2s ease,background .2s ease; }
+.clean-button:hover { transform:translateY(-1px); }
+.clean-button--primary { color:#fff; background:#171717; }
+.clean-button--primary:hover { background:#333; }
+.clean-button--light { color:#171717; background:#fff; }
+.clean-text-link { display:inline-flex; align-items:center; gap:10px; font-weight:700; font-size:.92rem; }
+.clean-text-link span { transition:transform .2s ease; }
+.clean-text-link:hover span { transform:translateX(4px); }
+
+.clean-intro { padding:110px 0; text-align:center; }
+.clean-intro__inner { max-width:900px; }
+.clean-intro h2 { margin:0; font:700 clamp(2.8rem,5vw,5rem)/1 "Manrope",sans-serif; letter-spacing:-.055em; }
+.clean-intro__inner>p:not(.clean-kicker) { max-width:760px; margin:28px auto 24px; color:var(--clean-muted); font-size:1.2rem; line-height:1.7; }
+
+.clean-offerings { padding:100px 0 120px; background:var(--clean-soft); }
+.clean-section-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:40px; margin-bottom:46px; }
+.clean-section-heading h2 { max-width:760px; margin:0; font:700 clamp(2.5rem,4.6vw,4.5rem)/1.02 "Manrope",sans-serif; letter-spacing:-.055em; }
+.clean-feature-list { display:grid; gap:28px; }
+.clean-feature { display:grid; grid-template-columns:1.35fr .65fr; min-height:500px; background:#fff; overflow:hidden; }
+.clean-feature:nth-child(even) { grid-template-columns:.65fr 1.35fr; }
+.clean-feature:nth-child(even) .clean-feature__image { order:2; }
+.clean-feature__image { min-height:500px; background-size:cover; background-position:center; }
+.clean-feature__copy { display:flex; flex-direction:column; justify-content:center; padding:54px; }
+.clean-feature__copy>p { margin:0 0 16px; color:#777; font-size:.72rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
+.clean-feature__copy h3 { margin:0 0 18px; font:700 clamp(2.5rem,4vw,4.2rem)/1 "Manrope",sans-serif; letter-spacing:-.055em; }
+.clean-feature__copy>span { color:var(--clean-muted); font-size:1.05rem; line-height:1.65; }
+.clean-feature__copy strong { margin-top:32px; font-size:.9rem; }
+.clean-feature__copy strong b { margin-left:8px; }
+
+.clean-news { padding:110px 0; }
+.clean-news-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.clean-news-card { display:block; border:1px solid var(--clean-border); background:#fff; transition:box-shadow .2s ease,transform .2s ease; }
+.clean-news-card:hover { transform:translateY(-3px); box-shadow:0 16px 38px rgba(0,0,0,.08); }
+.clean-news-card__image { height:250px; background:#eee; }
+.clean-news-card__copy { padding:25px; }
+.clean-news-card__copy p { margin:0 0 14px; color:#777; font-size:.72rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+.clean-news-card__copy h3 { margin:0 0 24px; font:700 1.45rem/1.25 "Manrope",sans-serif; letter-spacing:-.025em; }
+.clean-news-card__copy span { font-size:.87rem; font-weight:700; }
+.clean-news-empty { grid-column:1/-1; padding:55px; background:var(--clean-soft); }
+.clean-news-empty p { text-transform:uppercase; letter-spacing:.12em; font-size:.72rem; }
+.clean-news-empty h3 { max-width:800px; margin:12px 0 0; font:700 clamp(2rem,4vw,4rem)/1.05 "Manrope",sans-serif; }
+.clean-careers { padding:40px 0 110px; }
+.clean-careers__inner { display:flex; align-items:center; justify-content:space-between; gap:40px; padding:64px; background:#f1f1f1; }
+.clean-careers h2 { max-width:760px; margin:0; font:700 clamp(2.5rem,4.6vw,4.5rem)/1 "Manrope",sans-serif; letter-spacing:-.055em; }
+
+/* Clean supporting pages while preserving the existing contact page */
+.company-hero,.products-hero,.page-hero,.page-hero-dark,.product-hero,.product-hero-rose,.experience-hero,.newsroom-hero {
+  min-height:auto;
+  padding:120px 0 72px;
+  color:#171717;
+  background:#fff;
+}
+.company-hero { display:grid; grid-template-columns:minmax(0,1fr); padding:0; min-height:650px; align-items:end; background:#fff; }
+.company-hero__image { position:absolute; inset:0 0 0 48%; background-position:center; }
+.company-hero__overlay { background:linear-gradient(90deg,#fff 0%,#fff 42%,rgba(255,255,255,.8) 56%,rgba(255,255,255,0) 75%); }
+.company-hero__content { padding-top:150px; padding-bottom:90px; }
+.company-hero h1,.products-hero h1,.page-hero h1,.product-hero h1,.experience-hero h1,.newsroom-hero h1 { max-width:850px; color:#171717; font:700 clamp(3.4rem,7vw,6.5rem)/.96 "Manrope",sans-serif; letter-spacing:-.065em; }
+.company-hero p:last-child,.products-hero p:last-child,.page-hero p:last-child,.product-hero p,.experience-hero p,.newsroom-hero p { color:#666; }
+.kicker--light,.page-hero-dark .eyebrow,.product-hero .eyebrow,.experience-hero .eyebrow { color:#666; }
+.statement-section,.section,.news-home,.newsroom-list,.newsroom-list-section,.newsroom-section { background:#fff; }
+.statement-section { padding:100px 0; }
+.statement-grid h2,.split h2,.section-heading h2 { color:#171717; }
+.product-editorial { background:#f5f5f5; }
+.product-editorial__grid { grid-template-columns:1fr; grid-template-rows:auto; gap:24px; }
+.product-editorial-card,.product-editorial-card:first-child { min-height:480px; grid-row:auto; border-radius:0; }
+.product-editorial-card--plekxa,.product-editorial-card--studio,.product-editorial-card--experience { color:#171717; background:#fff; border:1px solid #ddd; }
+.product-editorial-card--experience:before { display:none; }
+.product-editorial-card h2 { color:#171717; }
+.product-editorial-card span,.product-editorial-card p { color:#666; }
+.feature-list { border-top:1px solid #ddd; }
+.feature-list article { background:#fff; border-bottom:1px solid #ddd; border-radius:0; }
+.editorial-grid,.newsroom-card-grid { gap:24px; }
+.editorial-card,.newsroom-card,.newsroom-feature-card,.job-card { border:1px solid #ddd; border-radius:0; background:#fff; box-shadow:none; }
+.editorial-card__art,.newsroom-image,.article-cover { border-radius:0; }
+.purpose-banner,.careers-callout { color:#171717; background:#f3f3f3; }
+.site-footer { color:#171717; background:#f5f5f5; border-top:1px solid #ddd; }
+.site-footer .site-logo img { content:url('/brand/plekxa-logo-black.png'); }
+.site-footer__brand p,.site-footer__links a,.site-footer__bottom { color:#666; }
+.site-footer__links h3 { color:#333; }
+.site-footer__links a:hover { color:#000; }
+.site-footer__bottom { border-top:1px solid #d7d7d7; }
+
+/* Keep the contact page styling exactly in its established darker direction */
+.contact-hero { min-height:620px; padding:0; color:#fff; background:#151119; }
+.contact-hero .container { padding-bottom:100px; }
+.contact-hero h1 { color:#fff; }
+.contact-hero p:last-child { color:rgba(255,255,255,.8); }
+.contact-hero .kicker { color:#fff; }
+.contact-section { background:#f5f1e8; }
+
+@media(max-width:900px){
+  .clean-hero { min-height:620px; }
+  .clean-hero__content { padding:100px 0 60px; }
+  .clean-feature,.clean-feature:nth-child(even) { grid-template-columns:1fr; }
+  .clean-feature:nth-child(even) .clean-feature__image { order:0; }
+  .clean-feature__image { min-height:420px; }
+  .clean-news-grid { grid-template-columns:1fr; }
+  .clean-careers__inner,.clean-section-heading { align-items:flex-start; flex-direction:column; }
+  .company-hero__image { inset:45% 0 0; }
+  .company-hero__overlay { background:linear-gradient(180deg,#fff 0%,#fff 48%,rgba(255,255,255,.55) 68%,rgba(255,255,255,0)); }
+  .company-hero { min-height:800px; align-items:start; }
+}
+@media(max-width:620px){
+  .container { width:min(100% - 28px,1200px); }
+  .clean-hero { min-height:590px; }
+  .clean-hero h1 { font-size:3.6rem; }
+  .clean-hero__overlay { background:linear-gradient(0deg,rgba(0,0,0,.78),rgba(0,0,0,.25)); }
+  .clean-intro,.clean-offerings,.clean-news { padding:78px 0; }
+  .clean-intro h2,.clean-section-heading h2,.clean-careers h2 { font-size:2.7rem; }
+  .clean-feature__image { min-height:300px; }
+  .clean-feature__copy { padding:32px 26px 38px; }
+  .clean-feature__copy h3 { font-size:2.6rem; }
+  .clean-careers { padding-bottom:78px; }
+  .clean-careers__inner { padding:38px 28px; }
+  .site-footer__links { grid-template-columns:1fr 1fr; }
+}
