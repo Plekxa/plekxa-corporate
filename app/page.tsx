@@ -47,6 +47,13 @@ const movieFallback: HomeRailItem[] = [
   { id:"movie-5", title:"Late Night Reflections", eyebrow:"PLEKXA ORIGINAL", href:"/products/plekxa", image:"https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=88" },
 ];
 
+const musicFallback: HomeRailItem[] = [
+  { id:"music-1", title:"Bittersweet", eyebrow:"PLEKXA MUSIC", href:"/music", image:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1100&q=88" },
+  { id:"music-2", title:"Dancing in the Rain", eyebrow:"PLEKXA MUSIC", href:"/music", image:"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1100&q=88" },
+  { id:"music-3", title:"Antidepressant", eyebrow:"PLEKXA MUSIC", href:"/music", image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1100&q=88" },
+  { id:"music-4", title:"Late Night Reflections", eyebrow:"PLEKXA MUSIC", href:"/music", image:"https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1100&q=88" },
+];
+
 const showFallback: HomeRailItem[] = [
   { id:"show-1", title:"The Listening Room", description:"A live audience experience.", href:"/products/experience", image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1100&q=88" },
   { id:"show-2", title:"Stories After Dark", description:"Music, conversation and atmosphere.", href:"/products/experience", image:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1100&q=88" },
@@ -81,6 +88,7 @@ export default async function HomePage() {
   // They are sourced from Enterprise OS Content Studio (`content_items`).
   const movieContent = contentItems.filter((item) => /movie|film|cinema|feature|short film/i.test(item.content_type || ""));
   const showContent = contentItems.filter((item) => /show|series|programme|program|episode|television|tv/i.test(item.content_type || ""));
+  const musicContent = contentItems.filter((item) => /music|song|single|album|ep|audio|soundtrack/i.test(item.content_type || ""));
 
   const movieItems: HomeRailItem[] = movieContent.length
     ? movieContent.map((item) => ({
@@ -102,6 +110,17 @@ export default async function HomePage() {
         image: item.artwork_url,
       }))
     : showFallback;
+
+  const musicItems: HomeRailItem[] = musicContent.length
+    ? musicContent.map((item) => ({
+        id: item.id,
+        title: item.title,
+        description: item.description || undefined,
+        eyebrow: item.content_type || "MUSIC",
+        href: item.media_url || item.preview_url || "/music",
+        image: item.artwork_url,
+      }))
+    : musicFallback;
 
   const experienceFallbackImages = [
     "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1300&q=88",
@@ -142,15 +161,15 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="disney-section disney-section--world">
-        <div className="container disney-section__heading"><h2>Our World</h2></div>
-        <HomeRail items={productItems} label="Our World" variant="editorial" />
-      </section>
-
       <section className="disney-section disney-section--news">
         <div className="container disney-section__heading"><h2>Latest from Plekxa</h2></div>
         <HomeRail items={newsItems} label="Latest from Plekxa" variant="feature" />
         <div className="disney-section__action"><Link href="/newsroom" className="disney-button disney-button--light">Visit newsroom</Link></div>
+      </section>
+
+      <section className="disney-section disney-section--music">
+        <div className="container disney-section__heading"><h2>Music</h2></div>
+        <HomeRail items={musicItems} label="Music" variant="compact" />
       </section>
 
       <section className="disney-section disney-section--shows">

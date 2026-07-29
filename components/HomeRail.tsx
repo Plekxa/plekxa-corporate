@@ -20,7 +20,7 @@ export function HomeRail({
 }: {
   items: HomeRailItem[];
   label: string;
-  variant?: "editorial" | "feature" | "show" | "poster";
+  variant?: "editorial" | "feature" | "show" | "poster" | "compact";
 }) {
   const railRef = useRef<HTMLDivElement>(null);
 

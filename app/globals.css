@@ -890,3 +890,48 @@ body { background:#fff; color:var(--clean-text); }
 .disney-section--experiences .disney-card__body h3 { color:#fff; }
 .disney-section--experiences .disney-card__body>span { color:rgba(255,255,255,.86); }
 .disney-section--experiences .disney-card__body p { color:#fff; }
+
+/* v3.6 — tighter Disney-scale media rails and entertainment-first navigation */
+.site-header__inner { grid-template-columns:auto 1fr auto; }
+.site-header__contact { display:none !important; }
+.site-nav { justify-content:flex-start; }
+.disney-section--music { color:#151515; background:#f1f2f3; }
+.disney-rail-wrap--compact .disney-card { flex:0 0 calc((100% - 72px)/4.35); background:transparent; }
+.disney-rail-wrap--compact .disney-card__image { height:230px; }
+.disney-rail-wrap--compact .disney-card__body { min-height:auto; padding:12px 0 0; }
+.disney-rail-wrap--compact .disney-card__body h3 { font-size:1.05rem; line-height:1.25; }
+.disney-rail-wrap--compact .disney-card__body>span { display:none; }
+.disney-rail-wrap--compact .disney-card__body p { margin:6px 0 0; padding:0; color:#666; font-size:.67rem; }
+.disney-rail-wrap--show .disney-card { flex:0 0 calc((100% - 84px)/4.4); }
+.disney-rail-wrap--show .disney-card__image { height:410px; }
+.disney-rail-wrap--poster .disney-card { flex:0 0 calc((100% - 100px)/5.35); }
+.disney-rail-wrap--poster .disney-card__image { height:375px; }
+.catalogue-page { min-height:70vh; padding-bottom:90px; background:#f1f2f3; }
+.catalogue-hero { padding-top:72px; padding-bottom:42px; text-align:center; }
+.catalogue-hero h1 { margin:0; font:500 clamp(3rem,7vw,6.2rem)/1 "DM Sans",sans-serif; letter-spacing:-.055em; }
+.catalogue-hero p { max-width:650px; margin:18px auto 0; color:#606060; font-size:1.08rem; line-height:1.6; }
+.catalogue-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:34px 22px; }
+.catalogue-card { color:#151515; text-decoration:none; }
+.catalogue-card__image { aspect-ratio:3/4; background:#dfe1e3 center/cover no-repeat; }
+.catalogue-card h2 { margin:13px 0 6px; font-size:1.12rem; font-weight:500; }
+.catalogue-card p { margin:0; color:#666; font-size:.92rem; line-height:1.45; }
+.catalogue-empty { grid-column:1/-1; padding:80px 30px; text-align:center; background:#fff; }
+.catalogue-empty h2 { margin:0 0 10px; font-size:2rem; }
+.catalogue-empty p { margin:0; color:#666; }
+@media(max-width:980px){
+  .disney-rail-wrap--compact .disney-card { flex-basis:38vw; }
+  .disney-rail-wrap--show .disney-card { flex-basis:36vw; }
+  .disney-rail-wrap--poster .disney-card { flex-basis:29vw; }
+  .catalogue-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+@media(max-width:680px){
+  .site-header__inner { grid-template-columns:1fr auto; }
+  .disney-rail-wrap--compact .disney-card { flex-basis:72vw; }
+  .disney-rail-wrap--compact .disney-card__image { height:220px; }
+  .disney-rail-wrap--show .disney-card { flex-basis:62vw; }
+  .disney-rail-wrap--show .disney-card__image { height:360px; }
+  .disney-rail-wrap--poster .disney-card { flex-basis:56vw; }
+  .disney-rail-wrap--poster .disney-card__image { height:350px; }
+  .catalogue-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 14px; }
+  .catalogue-hero { padding-top:48px; }
+}
