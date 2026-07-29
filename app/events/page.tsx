@@ -1,0 +1,6 @@
+import Link from 'next/link';
+import {getEvents,formatDate} from '@/lib/cms';
+import {CmsImage} from '@/components/CmsImage';
+export const revalidate=60;
+export const metadata={title:'Events'};
+export default async function Page(){const events=await getEvents();return <main><section className="newsroom-hero"><div className="container"><p className="kicker">Plekxa Events</p><h1>Come into the experience.</h1><p>Live, physical and shared experiences published by Plekxa.</p></div></section><section className="newsroom-list"><div className="container editorial-grid">{events.map((event,index)=><article key={event.id} className={`editorial-card editorial-card--${['one','two','three'][index%3]}`}><CmsImage src={event.image_url} alt={event.title} className="editorial-card__art"/><div><p>{event.starts_at?formatDate(event.starts_at):'Date to be announced'}{event.location?` · ${event.location}`:''}</p><h3>{event.title}</h3><span>{event.summary}</span>{event.ticket_url&&<Link href={event.ticket_url}>View event ↗</Link>}</div></article>)}{!events.length&&<div className="news-empty"><p>Events</p><h3>Published events from Enterprise OS will appear here automatically.</h3></div>}</div></section></main>}

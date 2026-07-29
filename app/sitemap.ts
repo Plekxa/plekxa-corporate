@@ -1,18 +1,8 @@
 import type { MetadataRoute } from "next";
-import { site } from "@/lib/site";
-
-export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = [
-    "", "/company", "/products", "/products/plekxa", "/products/studio",
-    "/products/experience", "/newsroom", "/newsroom/why-plekxa",
-    "/newsroom/introducing-plekxa-studio", "/newsroom/better-infrastructure",
-    "/contact", "/careers", "/privacy", "/terms", "/cookies",
-    "/accessibility", "/community-guidelines",
-  ];
-  return routes.map((route) => ({
-    url: `${site.url}${route}`,
-    lastModified: new Date(),
-    changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : 0.7,
-  }));
+import { getPublishedArticles } from "@/lib/cms";
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const base="https://plekxa.com";
+  const routes=["/","/company","/products","/products/plekxa","/products/studio","/products/experience","/newsroom","/careers","/contact","/terms","/privacy","/cookies","/accessibility","/community-guidelines"];
+  const articles=await getPublishedArticles(500);
+  return [...routes.map(route=>({url:`${base}${route}`,lastModified:new Date(),changeFrequency:route==="/"?"weekly":"monthly" as const,priority:route==="/"?1:.7})),...articles.map(article=>({url:`${base}/newsroom/${article.slug}`,lastModified:new Date(article.updated_at||article.created_at),changeFrequency:"monthly" as const,priority:.7}))];
 }

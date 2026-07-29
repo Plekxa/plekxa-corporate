@@ -1,37 +1,25 @@
-# Plekxa Corporate Website
+# Plekxa Corporate Website v2.0
 
-Production-ready Next.js App Router starter for Plekxa.com.
+Entertainment-first corporate website for Plekxa Group Limited.
 
 ## Run
-
-Node.js 20.9+
 
 ```bash
 npm install
 npm run dev
 ```
 
-## GitHub
+## Shared Supabase support centre
 
-```bash
-git init
-git add .
-git commit -m "Launch Plekxa corporate website"
-git branch -M main
-git remote add origin YOUR_GITHUB_REPOSITORY_URL
-git push -u origin main
+Add the same public Supabase values used by Plekxa Studio and Enterprise OS:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 ```
 
-## Vercel and domain
+The contact form inserts into the existing `support_requests` table using the anonymous insert policy. Expected columns: `name`, `email`, `topic`, `category`, `message`, `status`.
 
-1. Import the GitHub repository into a new Vercel project.
-2. Deploy with the default Next.js settings.
-3. Open Settings > Domains.
-4. Add `plekxa.com` and `www.plekxa.com`.
-5. Follow the exact DNS records shown by Vercel.
-6. Make `plekxa.com` primary and redirect `www` to it.
-7. Preserve the existing streaming project, then later connect it to `app.plekxa.com`.
+## Important
 
-Recommended structure: `plekxa.com` corporate, `studio.plekxa.com` Studio, `app.plekxa.com` Experience.
-
-Before launch, update contact inboxes, social links, legal text and newsroom dates.
+The site retains the existing Terms, Privacy and Cookie documents in `public/legal/`.

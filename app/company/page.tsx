@@ -1,64 +1,11 @@
-import Link from "next/link";
-
-export const metadata = { title: "Company" };
-
-const principles = [
-  { title: "Creator empowerment", copy: "We build infrastructure that gives creators better ways to develop ideas, collaborate, manage rights and participate in long-term value." },
-  { title: "Connected experiences", copy: "We connect creation, distribution, discovery and audience engagement instead of treating them as separate worlds." },
-  { title: "Long-term thinking", copy: "We are building an adaptable entertainment ecosystem designed to grow across products, formats and markets." },
-];
-
-export default function Page() {
-  return (
-    <>
-      <section className="page-hero page-hero-dark">
-        <div className="container narrow">
-          <span className="eyebrow">About Plekxa</span>
-          <h1>Building a more connected future for entertainment.</h1>
-          <p>Plekxa is an entertainment technology company developing products and services that empower creators, enable businesses and transform how people experience entertainment.</p>
-        </div>
-      </section>
-
-      <section className="section company-intro">
-        <div className="container split">
-          <div><span className="eyebrow">What we are building</span><h2>Better infrastructure for creativity.</h2></div>
-          <div>
-            <p>Founded on the belief that creativity deserves better infrastructure, Plekxa is building an integrated ecosystem where creators can develop ideas, collaborate across disciplines, manage intellectual property and connect their work to audiences through innovative digital experiences.</p>
-            <p>Our ambition extends beyond individual products. We are connecting every stage of the entertainment value chain—from creation and collaboration to distribution, discovery, engagement and immersive experiences.</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="section values-section">
-        <div className="container">
-          <span className="eyebrow">Our principles</span>
-          <div className="values-grid">
-            {principles.map((item, index) => (
-              <article key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.copy}</p></article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section company-intro">
-        <div className="container split">
-          <div><span className="eyebrow">Our products</span><h2>One company. A connected ecosystem.</h2></div>
-          <div>
-            <p><strong>Plekxa Studio</strong> is the creator platform at the heart of our ecosystem. It gives creators tools and opportunities to collaborate on projects, develop original intellectual property, manage rights, generate royalties and participate in entertainment experiences.</p>
-            <p><strong>Plekxa</strong> is our future consumer platform, designed to bring together entertainment, creators and digital experiences in ways that go beyond simply watching, listening or streaming.</p>
-            <Link href="/products" className="text-link">Explore our products <b>↗</b></Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container narrow prose-large">
-          <span className="eyebrow">Looking ahead</span>
-          <h2>Building for the long term.</h2>
-          <p>Beginning with creator infrastructure through Plekxa Studio and expanding into consumer experiences through future Plekxa products, we are creating an integrated entertainment ecosystem for the next generation of creators and audiences.</p>
-          <p>We believe the future of entertainment will be more connected, collaborative and immersive—and Plekxa is building the technology to help make that future possible.</p>
-        </div>
-      </section>
-    </>
-  );
-}
+import Link from 'next/link';
+import {getCmsPage,getLeadership} from '@/lib/cms';
+import {CmsImage} from '@/components/CmsImage';
+export const revalidate=60;
+export const metadata={title:'Company'};
+export default async function Page(){const [page,leaders]=await Promise.all([getCmsPage('company'),getLeadership()]);return <main>
+<section className="company-hero"><div className="company-hero__image" style={page?.hero_image_url?{backgroundImage:`url(${page.hero_image_url})`}:undefined}/><div className="company-hero__overlay"/><div className="container company-hero__content"><p className="kicker kicker--light">{page?.eyebrow||'About Plekxa'}</p><h1>{page?.headline||'We are an entertainment and media company.'}</h1><p>{page?.summary||'We create stories, music, experiences and platforms that help people get more out of life.'}</p></div></section>
+<section className="statement-section"><div className="container statement-grid"><p className="kicker">Our purpose</p><div><h2>{page?.title||'Helping people live their best lives.'}</h2>{page?.body?<>{page.body.split(/\n{2,}/).map((x,i)=><p key={i}>{x}</p>)}</>:<><p>That purpose is broad because life is broad. Entertainment can make an ordinary evening unforgettable, help someone through a difficult season, bring friends together or open a door into a completely different world.</p><p>Plekxa exists to create more of those moments—and to build the company, talent, media and platforms needed to deliver them at scale.</p></>}</div></div></section>
+{leaders.length>0&&<section className="news-home"><div className="container section-heading-row"><div><p className="kicker">Leadership</p><h2>The people building Plekxa.</h2></div></div><div className="container editorial-grid">{leaders.map((leader,index)=><article className={`editorial-card editorial-card--${['one','two','three'][index%3]}`} key={leader.id}><CmsImage src={leader.image_url} alt={leader.name} className="editorial-card__art"/><div><p>{leader.role}</p><h3>{leader.name}</h3><span>{leader.bio}</span></div></article>)}</div></section>}
+<section className="statement-section"><div className="container statement-grid"><p className="kicker">Where we are going</p><div><h2>From a creator platform to a global entertainment ecosystem.</h2><p>Plekxa Studio is our first major platform. Over time, the wider Plekxa ecosystem will connect creation with audiences through media, consumer products and real-world experiences.</p><Link href="/products" className="arrow-link">Explore the ecosystem <span>↗</span></Link></div></div></section>
+</main>}
