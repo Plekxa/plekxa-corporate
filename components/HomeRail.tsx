@@ -13,17 +13,25 @@ export type HomeRailItem = {
   cta?: string;
 };
 
-export function HomeRail({ items, label }: { items: HomeRailItem[]; label: string }) {
+export function HomeRail({
+  items,
+  label,
+  variant = "editorial",
+}: {
+  items: HomeRailItem[];
+  label: string;
+  variant?: "editorial" | "feature" | "show" | "poster";
+}) {
   const railRef = useRef<HTMLDivElement>(null);
 
   const move = (direction: -1 | 1) => {
     const rail = railRef.current;
     if (!rail) return;
-    rail.scrollBy({ left: direction * Math.min(rail.clientWidth * 0.86, 720), behavior: "smooth" });
+    rail.scrollBy({ left: direction * Math.min(rail.clientWidth * 0.9, 980), behavior: "smooth" });
   };
 
   return (
-    <div className="disney-rail-wrap">
+    <div className={`disney-rail-wrap disney-rail-wrap--${variant}`}>
       <div className="disney-rail-controls" aria-label={`${label} carousel controls`}>
         <button type="button" onClick={() => move(-1)} aria-label={`Previous ${label}`}>
           <span aria-hidden="true">‹</span>
@@ -42,10 +50,9 @@ export function HomeRail({ items, label }: { items: HomeRailItem[]; label: strin
               aria-label={item.title}
             />
             <div className="disney-card__body">
-              {item.eyebrow ? <p>{item.eyebrow}</p> : null}
               <h3>{item.title}</h3>
               {item.description ? <span>{item.description}</span> : null}
-              <strong>{item.cta || "Learn more"}</strong>
+              {item.eyebrow ? <p>{item.eyebrow}</p> : null}
             </div>
           </Link>
         ))}

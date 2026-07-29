@@ -126,3 +126,53 @@ export async function getNavigation(location?:string): Promise<CmsNavItem[]> { t
 export async function getLeadership(): Promise<CmsLeader[]> { try { return await rest<CmsLeader[]>('cms_leadership?select=*&status=eq.published&order=display_order.asc'); } catch { return []; } }
 export async function getEvents(): Promise<CmsEvent[]> { try { return await rest<CmsEvent[]>('cms_events?select=*&status=eq.published&order=starts_at.asc'); } catch { return []; } }
 export async function getSettings(): Promise<Record<string,string>> { try { const rows=await rest<Array<{setting_key:string;value:string|null}>>('cms_settings?select=setting_key,value&status=eq.active'); return Object.fromEntries(rows.map(x=>[x.setting_key,x.value||''])); } catch { return {}; } }
+
+
+export type ContentItem = {
+  id: string;
+  title: string;
+  slug: string | null;
+  content_type: string | null;
+  description: string | null;
+  artwork_url: string | null;
+  media_url: string | null;
+  preview_url: string | null;
+  release_at: string | null;
+  duration_seconds: number | null;
+  status: string | null;
+  created_at?: string | null;
+};
+
+export type PublicExperience = {
+  id: string;
+  title: string;
+  slug: string | null;
+  summary?: string | null;
+  description?: string | null;
+  image_url?: string | null;
+  artwork_url?: string | null;
+  location?: string | null;
+  published_at: string | null;
+  status: string | null;
+  created_at?: string | null;
+};
+
+export async function getPublishedContentItems(limit = 100): Promise<ContentItem[]> {
+  try {
+    return await rest<ContentItem[]>(
+      `content_items?select=*&status=eq.published&order=release_at.desc,created_at.desc&limit=${limit}`
+    );
+  } catch {
+    return [];
+  }
+}
+
+export async function getPublishedExperiences(limit = 50): Promise<PublicExperience[]> {
+  try {
+    return await rest<PublicExperience[]>(
+      `experiences?select=*&status=eq.published&order=published_at.desc,created_at.desc&limit=${limit}`
+    );
+  } catch {
+    return [];
+  }
+}
