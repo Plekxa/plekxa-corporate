@@ -1,133 +1,138 @@
 import Link from "next/link";
-import { CmsImage } from "@/components/CmsImage";
-import { articleDate, formatDate, getPublishedArticles, getHomepageSections } from "@/lib/cms";
+import { HomeRail, type HomeRailItem } from "@/components/HomeRail";
+import { articleDate, formatDate, getHomepageSections, getPublishedArticles } from "@/lib/cms";
 
 export const revalidate = 60;
 
-const offerings = [
+const productItems: HomeRailItem[] = [
   {
+    id: "plekxa",
     eyebrow: "For audiences",
     title: "Plekxa",
-    copy: "A future home for music, stories and entertainment experiences made around real life.",
+    description: "Music, stories and entertainment experiences built around real life.",
     href: "/products/plekxa",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1800&q=85",
+    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1500&q=86",
+    cta: "Discover Plekxa",
   },
   {
+    id: "studio",
     eyebrow: "For creators",
     title: "Plekxa Studio",
-    copy: "A professional platform for discovering opportunities, pitching ideas and creating together.",
+    description: "A place to discover opportunities, pitch ideas and create with others.",
     href: "/products/studio",
-    image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1800&q=85",
+    image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1500&q=86",
+    cta: "Explore Studio",
   },
   {
-    eyebrow: "Beyond the screen",
+    id: "experiences",
+    eyebrow: "Live and physical",
     title: "Plekxa Experiences",
-    copy: "Digital, physical and live entertainment designed to turn ordinary moments into memorable ones.",
+    description: "Entertainment that moves beyond the screen and into memorable moments.",
     href: "/products/experience",
-    image: "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1800&q=85",
+    image: "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1500&q=86",
+    cta: "Explore experiences",
+  },
+  {
+    id: "company",
+    eyebrow: "The company",
+    title: "Inside Plekxa",
+    description: "Learn about our purpose, our people and the world we are building.",
+    href: "/company",
+    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1500&q=86",
+    cta: "About Plekxa",
   },
 ];
 
 export default async function HomePage() {
-  const [news, sections] = await Promise.all([getPublishedArticles(3), getHomepageSections()]);
+  const [articles, sections] = await Promise.all([
+    getPublishedArticles(12),
+    getHomepageSections(),
+  ]);
+
   const byKey = Object.fromEntries(sections.map((section) => [section.section_key, section]));
   const hero = byKey.hero;
-  const purpose = byKey.purpose;
+
+  const newsItems: HomeRailItem[] = articles.length
+    ? articles.map((article) => ({
+        id: article.id,
+        eyebrow: `${article.category || "News"} · ${formatDate(articleDate(article))}`,
+        title: article.title,
+        description: article.excerpt || undefined,
+        href: `/newsroom/${article.slug}`,
+        image: article.cover_image_url,
+        cta: "Read story",
+      }))
+    : [
+        {
+          id: "newsroom-placeholder",
+          eyebrow: "Newsroom",
+          title: "Plekxa stories will appear here.",
+          description: "Publish an article in Enterprise OS and it will automatically join this slider.",
+          href: "/newsroom",
+          image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1500&q=86",
+          cta: "Visit newsroom",
+        },
+      ];
 
   return (
-    <main className="clean-home">
-      <section className="clean-hero">
+    <main className="disney-home">
+      <section className="disney-hero">
         <div
-          className="clean-hero__media"
+          className="disney-hero__image"
           style={hero?.image_url ? { backgroundImage: `url(${hero.image_url})` } : undefined}
           aria-hidden="true"
         />
-        <div className="clean-hero__overlay" />
-        <div className="container clean-hero__content">
-          <p className="clean-kicker">{hero?.eyebrow || "Plekxa · Entertainment & Media"}</p>
+        <div className="disney-hero__shade" />
+        <div className="container disney-hero__content">
+          <p>{hero?.eyebrow || "Plekxa · Entertainment & Media"}</p>
           <h1>{hero?.title || "Entertainment for a fuller life."}</h1>
-          <p>{hero?.subtitle || "We create music, stories, platforms and experiences that help people feel more, connect more and enjoy life more."}</p>
-          <div className="clean-actions">
-            <Link href={hero?.cta_url || "/products"} className="clean-button clean-button--primary">
+          <span>
+            {hero?.subtitle ||
+              "We create music, stories, platforms and experiences that help people feel more, connect more and enjoy life more."}
+          </span>
+          <div className="disney-hero__actions">
+            <Link href={hero?.cta_url || "/products"} className="disney-button disney-button--light">
               {hero?.cta_label || "Explore Plekxa"}
             </Link>
-            <Link href={hero?.secondary_cta_url || "/company"} className="clean-button clean-button--light">
-              {hero?.secondary_cta_label || "About the company"}
+            <Link href={hero?.secondary_cta_url || "/company"} className="disney-button disney-button--outline">
+              {hero?.secondary_cta_label || "About us"}
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="clean-intro">
-        <div className="container clean-intro__inner">
-          <p className="clean-kicker clean-kicker--dark">Our purpose</p>
-          <h2>{purpose?.title || "Helping people live their best lives."}</h2>
-          <p>{purpose?.body || "We believe entertainment can make everyday life richer—giving people something to feel, share, remember and look forward to."}</p>
-          <Link href={purpose?.cta_url || "/company"} className="clean-text-link">
-            {purpose?.cta_label || "Our story"} <span>→</span>
-          </Link>
+      <section className="disney-section">
+        <div className="container disney-section__heading">
+          <div>
+            <p>Explore</p>
+            <h2>The world of Plekxa</h2>
+          </div>
+          <Link href="/products">View all</Link>
         </div>
+        <HomeRail items={productItems} label="The world of Plekxa" />
       </section>
 
-      <section className="clean-offerings">
-        <div className="container clean-section-heading">
+      <section className="disney-section disney-section--soft">
+        <div className="container disney-section__heading">
           <div>
-            <p className="clean-kicker clean-kicker--dark">Our world</p>
-            <h2>One company. More ways to experience entertainment.</h2>
+            <p>Latest</p>
+            <h2>From Plekxa</h2>
           </div>
-          <Link href="/products" className="clean-text-link">See everything <span>→</span></Link>
+          <Link href="/newsroom">Visit newsroom</Link>
         </div>
-
-        <div className="container clean-feature-list">
-          {offerings.map((item) => (
-            <Link href={item.href} className="clean-feature" key={item.title}>
-              <div className="clean-feature__image" style={{ backgroundImage: `url(${item.image})` }} />
-              <div className="clean-feature__copy">
-                <p>{item.eyebrow}</p>
-                <h3>{item.title}</h3>
-                <span>{item.copy}</span>
-                <strong>Discover more <b>→</b></strong>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <HomeRail items={newsItems} label="Latest from Plekxa" />
       </section>
 
-      <section className="clean-news">
-        <div className="container clean-section-heading">
+      <section className="disney-purpose">
+        <div className="container disney-purpose__inner">
           <div>
-            <p className="clean-kicker clean-kicker--dark">Latest</p>
-            <h2>From Plekxa.</h2>
+            <p>Our purpose</p>
+            <h2>Helping people live their best lives.</h2>
           </div>
-          <Link href="/newsroom" className="clean-text-link">Visit newsroom <span>→</span></Link>
-        </div>
-
-        <div className="container clean-news-grid">
-          {news.length ? news.map((item) => (
-            <Link key={item.id} href={`/newsroom/${item.slug}`} className="clean-news-card">
-              <CmsImage src={item.cover_image_url} alt={item.title} className="clean-news-card__image" />
-              <div className="clean-news-card__copy">
-                <p>{item.category || "News"} · {formatDate(articleDate(item))}</p>
-                <h3>{item.title}</h3>
-                <span>Read story →</span>
-              </div>
-            </Link>
-          )) : (
-            <div className="clean-news-empty">
-              <p>Newsroom</p>
-              <h3>Stories published in Enterprise OS will appear here automatically.</h3>
-            </div>
-          )}
-        </div>
-      </section>
-
-      <section className="clean-careers">
-        <div className="container clean-careers__inner">
           <div>
-            <p className="clean-kicker clean-kicker--dark">Careers</p>
-            <h2>Make something people will remember.</h2>
+            <span>We believe entertainment can make everyday life richer—giving people something to feel, share, remember and look forward to.</span>
+            <Link href="/company">Discover our story <b aria-hidden="true">→</b></Link>
           </div>
-          <Link href="/careers" className="clean-button clean-button--primary">Work with us</Link>
         </div>
       </section>
     </main>

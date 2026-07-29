@@ -717,3 +717,59 @@ body { background:#fff; color:var(--clean-text); }
   .clean-careers__inner { padding:38px 28px; }
   .site-footer__links { grid-template-columns:1fr 1fr; }
 }
+
+/* v3.2 — clean Disney-inspired homepage with two horizontal content rails */
+.disney-home { background:#fff; color:#151515; }
+.disney-hero { position:relative; min-height:680px; display:flex; align-items:flex-end; overflow:hidden; color:#fff; background:#111; }
+.disney-hero__image { position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=2200&q=88'); background-size:cover; background-position:center; }
+.disney-hero__shade { position:absolute; inset:0; background:linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.42) 46%,rgba(0,0,0,.05) 78%); }
+.disney-hero__content { position:relative; z-index:1; padding:160px 0 72px; }
+.disney-hero__content>p { margin:0 0 14px; font-size:.76rem; line-height:1; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
+.disney-hero h1 { max-width:730px; margin:0; font:700 clamp(3.6rem,7vw,6.8rem)/.95 "Manrope",sans-serif; letter-spacing:-.06em; }
+.disney-hero__content>span { display:block; max-width:590px; margin-top:22px; font-size:1.12rem; line-height:1.58; color:rgba(255,255,255,.9); }
+.disney-hero__actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+.disney-button { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 25px; border-radius:3px; font-size:.9rem; font-weight:700; transition:background .2s ease,color .2s ease; }
+.disney-button--light { color:#151515; background:#fff; }
+.disney-button--light:hover { background:#eee; }
+.disney-button--outline { color:#fff; border:1px solid rgba(255,255,255,.75); background:rgba(0,0,0,.12); }
+.disney-button--outline:hover { color:#151515; background:#fff; }
+.disney-section { padding:82px 0 94px; overflow:hidden; }
+.disney-section--soft { background:#f5f5f5; }
+.disney-section__heading { display:flex; align-items:flex-end; justify-content:space-between; gap:32px; margin-bottom:30px; }
+.disney-section__heading p,.disney-purpose p { margin:0 0 9px; color:#666; font-size:.72rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
+.disney-section__heading h2 { margin:0; font:700 clamp(2rem,4vw,3.7rem)/1 "Manrope",sans-serif; letter-spacing:-.045em; }
+.disney-section__heading>a { padding-bottom:3px; border-bottom:1px solid #151515; font-size:.9rem; font-weight:700; }
+.disney-rail-wrap { position:relative; }
+.disney-rail-controls { width:min(1280px,calc(100% - 48px)); margin:0 auto 14px; display:flex; justify-content:flex-end; gap:8px; }
+.disney-rail-controls button { width:40px; height:40px; display:grid; place-items:center; padding:0; border:1px solid #d6d6d6; border-radius:50%; color:#151515; background:#fff; cursor:pointer; }
+.disney-rail-controls button:hover { background:#151515; color:#fff; border-color:#151515; }
+.disney-rail-controls span { font-size:1.8rem; line-height:.8; transform:translateY(-1px); }
+.disney-rail { display:flex; gap:22px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding:0 max(24px,calc((100vw - 1280px)/2)) 12px; }
+.disney-rail::-webkit-scrollbar { display:none; }
+.disney-card { flex:0 0 min(410px,78vw); scroll-snap-align:start; background:#fff; box-shadow:0 2px 12px rgba(0,0,0,.08); transition:transform .22s ease,box-shadow .22s ease; }
+.disney-card:hover { transform:translateY(-4px); box-shadow:0 14px 34px rgba(0,0,0,.12); }
+.disney-card__image { height:260px; background:#ddd center/cover no-repeat; }
+.disney-card__body { min-height:230px; display:flex; flex-direction:column; padding:25px 25px 23px; }
+.disney-card__body p { margin:0 0 12px; color:#6d6d6d; font-size:.7rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; }
+.disney-card__body h3 { margin:0; font:700 1.65rem/1.12 "Manrope",sans-serif; letter-spacing:-.035em; }
+.disney-card__body>span { display:-webkit-box; overflow:hidden; -webkit-line-clamp:3; -webkit-box-orient:vertical; margin-top:14px; color:#626262; line-height:1.55; }
+.disney-card__body strong { margin-top:auto; padding-top:24px; font-size:.86rem; }
+.disney-purpose { padding:92px 0; background:#fff; border-top:1px solid #e4e4e4; }
+.disney-purpose__inner { display:grid; grid-template-columns:1.1fr .9fr; gap:100px; align-items:end; }
+.disney-purpose h2 { max-width:720px; margin:0; font:700 clamp(2.8rem,5.5vw,5.4rem)/.98 "Manrope",sans-serif; letter-spacing:-.06em; }
+.disney-purpose__inner>div:last-child>span { display:block; color:#5e5e5e; font-size:1.1rem; line-height:1.65; }
+.disney-purpose__inner>div:last-child>a { display:inline-flex; gap:10px; margin-top:25px; font-weight:700; }
+
+@media (max-width: 760px) {
+  .disney-hero { min-height:620px; }
+  .disney-hero__shade { background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.28)); }
+  .disney-hero__content { padding:125px 0 54px; }
+  .disney-section { padding:64px 0 72px; }
+  .disney-section__heading { align-items:flex-start; }
+  .disney-section__heading>a { display:none; }
+  .disney-rail-controls { display:none; }
+  .disney-rail { gap:15px; padding-left:24px; padding-right:24px; }
+  .disney-card { flex-basis:84vw; }
+  .disney-card__image { height:225px; }
+  .disney-purpose__inner { grid-template-columns:1fr; gap:30px; }
+}
