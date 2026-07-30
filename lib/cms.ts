@@ -31,16 +31,37 @@ export type CmsJob = {
   created_at: string;
 };
 
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const url =
+  process.env.NEXT_PUBLIC_SUPABASE_URL ||
+  process.env.SUPABASE_URL ||
+  process.env.NEXT_PUBLIC_DATABASE_URL;
+
+const serverKey =
+  process.env.SUPABASE_SERVICE_ROLE_KEY ||
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  process.env.SUPABASE_ANON_KEY;
 
 async function rest<T>(path: string): Promise<T> {
-  if (!url || !serviceKey) throw new Error("Corporate CMS environment variables are not configured.");
-  const response = await fetch(`${url}/rest/v1/${path}`, {
-    headers: { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` },
+  if (!url || !serverKey) {
+    console.error("Corporate CMS: Supabase URL/key are not configured in Vercel.");
+    throw new Error("Corporate CMS environment variables are not configured.");
+  }
+
+  const response = await fetch(`${url.replace(/\/$/, "")}/rest/v1/${path}`, {
+    headers: {
+      apikey: serverKey,
+      Authorization: `Bearer ${serverKey}`,
+      Accept: "application/json",
+    },
     next: { revalidate: 60 },
   });
-  if (!response.ok) throw new Error(`CMS request failed (${response.status}).`);
+
+  if (!response.ok) {
+    const details = await response.text();
+    console.error(`Corporate CMS request failed (${response.status}) for ${path}:`, details);
+    throw new Error(`CMS request failed (${response.status}).`);
+  }
+
   return response.json() as Promise<T>;
 }
 

@@ -39,19 +39,24 @@ export async function POST(request: Request) {
       );
     }
 
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseUrl =
+      process.env.NEXT_PUBLIC_SUPABASE_URL ||
+      process.env.SUPABASE_URL ||
+      process.env.NEXT_PUBLIC_DATABASE_URL;
     const supabaseKey =
-      process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+      process.env.SUPABASE_SERVICE_ROLE_KEY ||
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+      process.env.SUPABASE_ANON_KEY;
 
     if (!supabaseUrl || !supabaseKey) {
       console.error("Contact form: Supabase environment variables are missing.");
       return NextResponse.json(
-        { ok: false, error: "The contact service is not configured." },
+        { ok: false, error: "The website is missing its Supabase environment variables in Vercel." },
         { status: 503 },
       );
     }
 
-    const response = await fetch(`${supabaseUrl}/rest/v1/support_requests`, {
+    const response = await fetch(`${supabaseUrl.replace(/\/$/, "")}/rest/v1/support_requests`, {
       method: "POST",
       headers: {
         apikey: supabaseKey,
