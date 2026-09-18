@@ -164,34 +164,10 @@ export type ContentItem = {
   created_at?: string | null;
 };
 
-export type PublicExperience = {
-  id: string;
-  title: string;
-  slug: string | null;
-  summary?: string | null;
-  description?: string | null;
-  image_url?: string | null;
-  artwork_url?: string | null;
-  location?: string | null;
-  published_at: string | null;
-  status: string | null;
-  created_at?: string | null;
-};
-
 export async function getPublishedContentItems(limit = 100): Promise<ContentItem[]> {
   try {
     return await rest<ContentItem[]>(
       `content_items?select=*&status=eq.published&order=release_at.desc,created_at.desc&limit=${limit}`
-    );
-  } catch {
-    return [];
-  }
-}
-
-export async function getPublishedExperiences(limit = 50): Promise<PublicExperience[]> {
-  try {
-    return await rest<PublicExperience[]>(
-      `experiences?select=*&status=eq.published&order=published_at.desc,created_at.desc&limit=${limit}`
     );
   } catch {
     return [];

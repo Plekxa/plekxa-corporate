@@ -5,31 +5,10 @@ import { MarketingFooter } from "./MarketingFooter";
 
 export async function SiteHeader() {
   const rows = await getNavigation("header");
-
-  const cmsByLabel = new Map(
-    rows
-      .filter(
-        (row) =>
-          typeof row?.label === "string" &&
-          Boolean(row.label.trim()) &&
-          typeof row?.url === "string" &&
-          Boolean(row.url.trim()),
-      )
-      .map((row) => [row.label.trim().toLowerCase(), row] as const),
-  );
-
-  const links: HeaderLink[] = publicEntertainmentLinks.map((item) => {
-    const cmsItem = cmsByLabel.get(item.label.toLowerCase());
-
-    return cmsItem
-      ? {
-          label: item.label,
-          href: cmsItem.url.trim() || item.href,
-          newTab: Boolean(cmsItem.open_new_tab),
-        }
-      : item;
-  });
-
+  const valid = rows.filter((row) => typeof row?.label === "string" && row.label.trim() && typeof row?.url === "string" && row.url.trim());
+  const links: HeaderLink[] = valid.length
+    ? valid.map((row) => ({ label: row.label.trim(), href: row.url.trim(), newTab: Boolean(row.open_new_tab) }))
+    : publicEntertainmentLinks;
   return <MarketingHeader links={links} />;
 }
 

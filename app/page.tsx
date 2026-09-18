@@ -22,11 +22,11 @@ const productItems: HomeRailItem[] = [
     image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1500&q=86",
   },
   {
-    id: "experiences",
-    eyebrow: "EXPERIENCES",
+    id: "events",
+    eyebrow: "LIVE & EVENTS",
     title: "Beyond the screen",
-    description: "Entertainment designed to become memorable real-world moments.",
-    href: "/products/experience",
+    description: "Live entertainment and shared moments from Plekxa.",
+    href: "/events",
     image: "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1500&q=86",
   },
   {
@@ -55,10 +55,10 @@ const musicFallback: HomeRailItem[] = [
 ];
 
 const showFallback: HomeRailItem[] = [
-  { id:"show-1", title:"The Listening Room", description:"A live audience experience.", href:"/products/experience", image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1100&q=88" },
-  { id:"show-2", title:"Stories After Dark", description:"Music, conversation and atmosphere.", href:"/products/experience", image:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1100&q=88" },
-  { id:"show-3", title:"Plekxa Live", description:"Creators and audiences in one room.", href:"/products/experience", image:"https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=1100&q=88" },
-  { id:"show-4", title:"Dancing in the Rain", description:"An immersive entertainment experience.", href:"/products/experience", image:"https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&w=1100&q=88" },
+  { id:"show-1", title:"The Listening Room", description:"A live audience experience.", href:"/events", image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1100&q=88" },
+  { id:"show-2", title:"Stories After Dark", description:"Music, conversation and atmosphere.", href:"/events", image:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1100&q=88" },
+  { id:"show-3", title:"Plekxa Live", description:"Creators and audiences in one room.", href:"/events", image:"https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=1100&q=88" },
+  { id:"show-4", title:"Dancing in the Rain", description:"An immersive entertainment experience.", href:"/events", image:"https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&w=1100&q=88" },
 ];
 
 export default async function HomePage() {
@@ -83,7 +83,7 @@ export default async function HomePage() {
         href: `/newsroom/${article.slug}`,
         image: article.cover_image_url,
       }))
-    : [{ id:"newsroom-placeholder", eyebrow:"NEWSROOM", title:"Plekxa stories will appear here.", description:"Publish an article in Enterprise OS and it will automatically appear here.", href:"/newsroom", image:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1500&q=86" }];
+    : [{ id:"newsroom-placeholder", eyebrow:"NEWSROOM", title:"Plekxa stories will appear here.", description:"Company stories and updates will appear here as they are published.", href:"/newsroom", image:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1500&q=86" }];
 
   // Movies and shows are entertainment content, not newsroom articles.
   // They are sourced from Enterprise OS Content Studio (`content_items`).

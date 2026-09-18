@@ -1,1 +1,1 @@
-import {redirect} from 'next/navigation'; export default function Page(){redirect('/collections')}
+import {redirect} from "next/navigation"; export default function Page(){redirect("/events")}
