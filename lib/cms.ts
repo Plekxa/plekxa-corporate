@@ -197,3 +197,8 @@ export async function getPublishedExperiences(limit = 50): Promise<PublicExperie
     return [];
   }
 }
+
+export type PublicRelease = { release_id:string; asset_id:string; title:string; description:string|null; asset_type:string|null; artwork_url:string|null; platform:string; platform_identifier:string|null; platform_url:string|null; release_date:string|null; profile_name:string|null; profile_slug:string|null };
+export type PublicCollection = { id:string; collection_code:string; title:string; slug:string|null; collection_type:string; description:string|null; artwork_url:string|null; status:string };
+export async function getPublishedReleases(limit=100):Promise<PublicRelease[]>{try{return await rest<PublicRelease[]>(`public_release_catalogue?select=*&order=release_date.desc&limit=${limit}`)}catch{return []}}
+export async function getPublishedCollections(limit=50):Promise<PublicCollection[]>{try{return await rest<PublicCollection[]>(`collections?select=*&status=eq.published&order=created_at.desc&limit=${limit}`)}catch{return []}}

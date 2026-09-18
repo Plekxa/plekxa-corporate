@@ -23,7 +23,7 @@ const fallback: FooterGroup[] = [
       ["Music", "/music"],
       ["Shows", "/shows"],
       ["Movies", "/movies"],
-      ["Experiences", "/experiences"],
+      ["Collections", "/collections"],
     ],
   },
   {

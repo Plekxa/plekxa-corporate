@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { HomeRail, type HomeRailItem } from "@/components/HomeRail";
-import { articleDate, formatDate, getHomepageSections, getPublishedArticles, getPublishedContentItems, getPublishedExperiences } from "@/lib/cms";
+import { articleDate, formatDate, getHomepageSections, getPublishedArticles, getPublishedContentItems, getPublishedReleases, getPublishedCollections } from "@/lib/cms";
 
 export const revalidate = 60;
 
@@ -62,11 +62,12 @@ const showFallback: HomeRailItem[] = [
 ];
 
 export default async function HomePage() {
-  const [articles, sections, contentItems, experiences] = await Promise.all([
+  const [articles, sections, contentItems, releases, collections] = await Promise.all([
     getPublishedArticles(60),
     getHomepageSections(),
     getPublishedContentItems(100),
-    getPublishedExperiences(50),
+    getPublishedReleases(100),
+    getPublishedCollections(50),
   ]);
 
   const byKey = Object.fromEntries(sections.map((section) => [section.section_key, section]));
@@ -111,39 +112,15 @@ export default async function HomePage() {
       }))
     : showFallback;
 
-  const musicItems: HomeRailItem[] = musicContent.length
-    ? musicContent.map((item) => ({
-        id: item.id,
-        title: item.title,
-        description: item.description || undefined,
-        eyebrow: item.content_type || "MUSIC",
-        href: item.media_url || item.preview_url || "/music",
-        image: item.artwork_url,
-      }))
-    : musicFallback;
+  const musicReleases = releases.filter((item) => /music|audio/i.test(item.asset_type || ""));
+  const musicItems: HomeRailItem[] = musicReleases.length
+    ? musicReleases.map((item) => ({ id:item.release_id, title:item.title, description:item.description||undefined, eyebrow:item.profile_name||"PLEKXA MUSIC", href:item.platform_url||"/music", image:item.artwork_url }))
+    : musicContent.length ? musicContent.map((item)=>({id:item.id,title:item.title,description:item.description||undefined,eyebrow:item.content_type||"MUSIC",href:item.media_url||item.preview_url||"/music",image:item.artwork_url})) : musicFallback;
 
-  const experienceFallbackImages = [
-    "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1300&q=88",
-    "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1300&q=88",
-    "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=1300&q=88",
-    "https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&w=1300&q=88",
-  ];
-
-  const experienceItems: HomeRailItem[] = experiences.length
-    ? experiences.map((experience, index) => ({
-        id: experience.id,
-        title: experience.title,
-        description: experience.summary || experience.description || "A Plekxa audience experience.",
-        eyebrow: experience.location || "PLEKXA EXPERIENCE",
-        href: experience.slug ? `/products/experience#${experience.slug}` : "/products/experience",
-        image: experience.image_url || experience.artwork_url || experienceFallbackImages[index % experienceFallbackImages.length],
-      }))
-    : [
-        { id:"experience-1", title:"The Listening Room", description:"An intimate music and storytelling experience.", eyebrow:"PLEKXA EXPERIENCE", href:"/products/experience", image:experienceFallbackImages[0] },
-        { id:"experience-2", title:"Stories After Dark", description:"Music, conversation and atmosphere after sunset.", eyebrow:"PLEKXA EXPERIENCE", href:"/products/experience", image:experienceFallbackImages[1] },
-        { id:"experience-3", title:"Dancing in the Rain", description:"An immersive experience built around movement and release.", eyebrow:"PLEKXA EXPERIENCE", href:"/products/experience", image:experienceFallbackImages[2] },
-        { id:"experience-4", title:"Late Night Reflections", description:"A quiet room for stories, sound and reflection.", eyebrow:"PLEKXA EXPERIENCE", href:"/products/experience", image:experienceFallbackImages[3] },
-      ];
+  const collectionItems: HomeRailItem[] = collections.map((collection) => ({
+    id: collection.id, title: collection.title, description: collection.description || undefined,
+    eyebrow: collection.collection_type.toUpperCase(), href: collection.slug ? `/collections#${collection.slug}` : "/collections", image: collection.artwork_url
+  }));
 
   return (
     <main className="disney-home">
@@ -153,7 +130,7 @@ export default async function HomePage() {
         <div className="container disney-hero__content">
           <p>{hero?.eyebrow || "Plekxa · Entertainment & Media"}</p>
           <h1>{hero?.title || "Entertainment for a fuller life."}</h1>
-          <span>{hero?.subtitle || "We create music, stories, platforms and experiences that help people feel more, connect more and enjoy life more."}</span>
+          <span>{hero?.subtitle || "We create music, stories, releases and collections that help people feel more, connect more and enjoy life more."}</span>
           <div className="disney-hero__actions">
             <Link href={hero?.cta_url || "/products"} className="disney-button disney-button--light">{hero?.cta_label || "Explore Plekxa"}</Link>
             <Link href={hero?.secondary_cta_url || "/company"} className="disney-button disney-button--outline">{hero?.secondary_cta_label || "About us"}</Link>
@@ -177,9 +154,9 @@ export default async function HomePage() {
         <HomeRail items={showItems} label="Shows" variant="show" />
       </section>
 
-      <section className="disney-section disney-section--experiences">
-        <div className="container disney-section__heading"><h2>Experiences</h2></div>
-        <HomeRail items={experienceItems} label="Experiences" variant="feature" />
+      <section className="disney-section disney-section--collections">
+        <div className="container disney-section__heading"><h2>Collections</h2></div>
+        <HomeRail items={collectionItems} label="Collections" variant="feature" />
       </section>
 
       <section className="disney-section disney-section--movies">
@@ -193,7 +170,7 @@ export default async function HomePage() {
           <div className="disney-promo__content">
             <p>{promo?.eyebrow || "MORE FROM PLEKXA"}</p>
             <h2>{promo?.title || "Entertainment that stays with you."}</h2>
-            <span>{promo?.subtitle || promo?.body || "Discover the stories, creators and experiences shaping the world of Plekxa."}</span>
+            <span>{promo?.subtitle || promo?.body || "Discover the stories, creators and releases shaping the world of Plekxa."}</span>
             <Link href={promo?.cta_url || "/products"} className="disney-button disney-button--light">{promo?.cta_label || "Explore our world"}</Link>
           </div>
         </div>

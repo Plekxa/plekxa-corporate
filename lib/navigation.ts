@@ -8,5 +8,5 @@ export const publicEntertainmentLinks: HeaderLink[] = [
   { label: "Music", href: "/music" },
   { label: "Shows", href: "/shows" },
   { label: "Movies", href: "/movies" },
-  { label: "Experiences", href: "/experiences" },
+  { label: "Collections", href: "/collections" },
 ];
